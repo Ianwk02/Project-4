@@ -38,16 +38,41 @@ def PostprocessReactions(K, d, F, n_unknowns, nodes):
 def ComputeMemberForces(bars):
     # COMPLETE THIS FUNCTION
     # Compute member forces for all bars using equation 14-23 
+    for bar in bars:
+        E=bar.E
+        A=bar.A
+        L=bar.Length()
+        lambdax=bar.LambdaTerms[0]
+        lambday=bar.LambdaTerms[1]
+        Near=bar.init_node
+        Far=bar.end_node
+        Dx_Near=Near.xdisp
+        Dy_Near=Near.ydisp
+        Dx_Far=Far.xdisp
+        Dy_Far=Far.ydisp
+        
+        B= np.array([[-1*lambdax,-1*lambday,lambdax,lambday]])
+        C=np.array([[Dx_Near],[Dy_Near]],[Dx_Far],[Dy_Far])
+        bar.axial_load= ((E*A)/L)*(B@C)
     pass
     
 # compute the normal stresses
 def ComputeNormalStresses(bars):
     # COMPLETE THIS FUNCTION
     # Compute normal stress for all bars
+    for bar in bars:
+        bar.normal_stress=(bar.axial_load/bar.A)
     pass
 
 # compute the critical buckling load of a member
 def ComputeBucklingLoad(bars):
     # COMPLETE THIS FUNCTION
     # Compute critical buckling load for all bars
+     for bar in bars:
+        E=bar.E
+        L=bar.Length()
+        I=bar.It
+        
+        bar.buckling_load=(((np.pi**2)*E*I)/(L**2))
+        
     pass
