@@ -42,8 +42,8 @@ def ComputeMemberForces(bars):
         E=bar.E
         A=bar.A
         L=bar.Length()
-        lambdax=bar.LambdaTerms[0]
-        lambday=bar.LambdaTerms[1]
+        lambdax=bar.LambdaTerms()[0]
+        lambday=bar.LambdaTerms()[1]
         Near=bar.init_node
         Far=bar.end_node
         Dx_Near=Near.xdisp
