@@ -52,7 +52,7 @@ def ComputeMemberForces(bars):
         Dy_Far=Far.ydisp
         
         B= np.array([[-1*lambdax,-1*lambday,lambdax,lambday]])
-        C=np.array([[Dx_Near],[Dy_Near]],[Dx_Far],[Dy_Far])
+        C=np.array([Dx_Near,Dy_Near,Dx_Far,Dy_Far]).reshape(4,1)
         bar.axial_load= ((E*A)/L)*(B@C)
     pass
     
