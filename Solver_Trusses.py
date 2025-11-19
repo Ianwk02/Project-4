@@ -68,7 +68,7 @@ def ComputeNormalStresses(bars):
 def ComputeBucklingLoad(bars):
     # COMPLETE THIS FUNCTION
     # Compute critical buckling load for all bars
-     for bar in bars:
+    for bar in bars:
         E=bar.E
         L=bar.Length()
         I=bar.It
